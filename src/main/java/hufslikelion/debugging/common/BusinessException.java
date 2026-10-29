@@ -1,17 +1,11 @@
 package hufslikelion.debugging.common;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 
-public class BusinessException extends RuntimeException {
-
-    private final HttpStatus status;
+public class BusinessException extends ResponseStatusException {
 
     public BusinessException(HttpStatus status, String message) {
-        super(message);
-        this.status = status;
-    }
-
-    public HttpStatus getStatus() {
-        return status;
+        super(status, message);
     }
 }

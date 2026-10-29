@@ -1,6 +1,20 @@
 package hufslikelion.debugging.common;
 
-public record ApiResponse<T>(boolean success, String code, String message, T data) {
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class ApiResponse<T> {
+
+    private boolean success;
+    private String code;
+    private String message;
+    private T data;
 
     public static <T> ApiResponse<T> ok(T data) {
         return new ApiResponse<>(true, "OK", "성공", data);

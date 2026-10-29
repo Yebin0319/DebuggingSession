@@ -30,14 +30,18 @@ public class EnrollmentService {
 
     @Transactional
     public Enrollment enroll(EnrollmentRequest request) {
-        Student student = studentRepository.findById(request.studentId()).orElseThrow();
-        Course course = courseRepository.findById(request.courseId()).orElseThrow();
+        Student student = studentRepository.findById(request.getStudentId())
+                .orElseThrow(() -> new BusinessException(
+                        HttpStatus.NOT_FOUND, "학생을 찾을 수 없습니다. id=" + request.getStudentId()));
+        Course course = courseRepository.findById(request.getCourseId())
+                .orElseThrow(() -> new BusinessException(
+                        HttpStatus.NOT_FOUND, "강의를 찾을 수 없습니다. id=" + request.getCourseId()));
 
         long enrolledCount = enrollmentRepository.countByCourseId(course.getId());
-        if (enrolledCount > course.getCapacity()) {
+        if (enrolledCount >= course.getCapacity()) {
             throw new BusinessException(HttpStatus.CONFLICT, "정원이 초과되었습니다.");
         }
-        if (enrollmentRepository.existsByStudentIdAndCourseId(course.getId(), student.getId())) {
+        if (enrollmentRepository.existsByStudentIdAndCourseId(student.getId(), course.getId())) {
             throw new BusinessException(HttpStatus.CONFLICT, "이미 신청한 강의입니다.");
         }
 

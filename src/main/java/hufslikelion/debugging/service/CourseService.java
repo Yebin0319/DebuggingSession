@@ -29,7 +29,7 @@ public class CourseService {
 
     @Transactional
     public CourseResponse create(CourseCreateRequest request) {
-        Course course = new Course(request.name(), request.capacity(), request.dayOfWeek());
+        Course course = new Course(request.getName(), request.getCapacity(), request.getDayOfWeek());
         return CourseResponse.from(courseRepository.save(course));
     }
 }

@@ -1,38 +1,26 @@
+### 학생 등록
+POST http://localhost:8080/api/students
+Content-Type: application/json
+
+{"name": "김멋사"}
+
+### 강의 등록
+POST http://localhost:8080/api/courses
+Content-Type: application/json
+
+{"name": "디버깅", "capacity": 2, "dayOfWeek": "MON"}
+
 ### 강의 목록
 GET http://localhost:8080/api/courses
 
-### 강의 단건 (없는 id)
-GET http://localhost:8080/api/courses/999
+### 강의 단건
+GET http://localhost:8080/api/courses/1
 
-### 강의 생성 - 잘못된 enum 값
-POST http://localhost:8080/api/courses
-Content-Type: application/json
-
-{"name": "네트워크", "capacity": 30, "dayOfWeek": "MONDAY"}
-
-### 강의 생성 - 정상
-POST http://localhost:8080/api/courses
-Content-Type: application/json
-
-{"name": "네트워크", "capacity": 30, "dayOfWeek": "THU"}
-
-### 강의 생성 - 검증 실패
-POST http://localhost:8080/api/courses
-Content-Type: application/json
-
-{"name": "", "capacity": 0, "dayOfWeek": "MON"}
-
-### 수강신청 (프론트는 snake_case 로 보냄)
+### 수강신청
 POST http://localhost:8080/api/enrollments
 Content-Type: application/json
 
-{"student_id": 1, "course_id": 2}
-
-### 없는 학생으로 수강신청
-POST http://localhost:8080/api/enrollments
-Content-Type: application/json
-
-{"student_id": 999, "course_id": 2}
+{"studentId": 1, "courseId": 1}
 
 ### 학생 1의 신청 내역
 GET http://localhost:8080/api/students/1/enrollments

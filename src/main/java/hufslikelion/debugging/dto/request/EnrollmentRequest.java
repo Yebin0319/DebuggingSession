@@ -1,8 +1,20 @@
 package hufslikelion.debugging.dto.request;
 
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-public record EnrollmentRequest(
-        @NotNull Long studentId,
-        @NotNull Long courseId) {
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class EnrollmentRequest {
+
+    @NotNull
+    private Long studentId;
+
+    @NotNull
+    private Long courseId;
 }

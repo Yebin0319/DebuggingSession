@@ -4,9 +4,23 @@ import hufslikelion.debugging.domain.CourseDay;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-public record CourseCreateRequest(
-        @NotBlank String name,
-        @Min(1) int capacity,
-        @NotNull CourseDay dayOfWeek) {
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class CourseCreateRequest {
+
+    @NotBlank
+    private String name;
+
+    @Min(1)
+    private int capacity;
+
+    @NotNull
+    private CourseDay dayOfWeek;
 }
